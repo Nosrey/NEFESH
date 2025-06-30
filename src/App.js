@@ -259,6 +259,7 @@ const TestimoniosCarousel = ({ testimonios }) => {
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     telefono: '',
@@ -329,6 +330,16 @@ function App() {
     return () => observers.forEach(observer => observer.disconnect());
   }, []);
 
+  // Show/hide scroll to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -349,6 +360,14 @@ function App() {
       lenisRef.current.scrollTo(element, { offset: -80 });
     }
     setIsMenuOpen(false);
+  };
+
+  const scrollToTop = () => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   // Animation variants
@@ -400,7 +419,7 @@ function App() {
   const testimonios = [
     {
       content: "La puntualidad y la calidad del servicio son impecables. Totalmente recomendados.",
-      author: "Cliente Satisfecho",
+      author: "María González",
       rating: 5
     },
     {
@@ -410,12 +429,22 @@ function App() {
     },
     {
       content: "Servicio de alta calidad a un precio justo. Cuidan la mercancía como si fuera suya.",
-      author: "Cliente Frecuente",
+      author: "Ana Martínez",
       rating: 5
     },
     {
       content: "Profesionales de primera. Siempre cumplen con los plazos acordados.",
       author: "Comercio Zaragoza",
+      rating: 5
+    },
+    {
+      content: "Excelente servicio 24/7. Siempre disponibles cuando los necesito.",
+      author: "Carmen Jiménez",
+      rating: 5
+    },
+    {
+      content: "Transportan con mucho cuidado y siempre llegan a tiempo. Muy recomendables.",
+      author: "Roberto Fernández",
       rating: 5
     }
   ];
@@ -731,7 +760,8 @@ function App() {
                 {[
                   { year: "2020", content: "Inicio con una furgoneta y mucha pasión" },
                   { year: "2022", content: "Expansión de servicios y flota" },
-                  { year: "2024", content: "Líder en confianza y calidad" }
+                  { year: "2024", content: "Líder en confianza y calidad" },
+                  { year: "2025", content: "Mejorando cada día para ofrecerte un transporte eficiente" }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
@@ -1159,6 +1189,26 @@ function App() {
           </motion.div>
         </div>
       </motion.footer>
+
+      {/* Scroll to Top Button - Solo visible en móvil */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            className="scroll-to-top"
+            onClick={scrollToTop}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
