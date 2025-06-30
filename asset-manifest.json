@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/NEFESH/static/css/main.d2d46b22.css",
+    "main.js": "/NEFESH/static/js/main.5f0c64c7.js",
+    "static/js/453.75d832be.chunk.js": "/NEFESH/static/js/453.75d832be.chunk.js",
+    "static/media/image-2.jpg": "/NEFESH/static/media/image-2.bf7a0f34e4b082155f3c.jpg",
+    "static/media/logo.png": "/NEFESH/static/media/logo.05ed6d8e494d948e3544.png",
+    "static/media/image-3.jpg": "/NEFESH/static/media/image-3.49d486dd1a372020ec28.jpg",
+    "static/media/image-1.jpg": "/NEFESH/static/media/image-1.fe7303390c61fb8ecaaa.jpg",
+    "index.html": "/NEFESH/index.html",
+    "main.d2d46b22.css.map": "/NEFESH/static/css/main.d2d46b22.css.map",
+    "main.5f0c64c7.js.map": "/NEFESH/static/js/main.5f0c64c7.js.map",
+    "453.75d832be.chunk.js.map": "/NEFESH/static/js/453.75d832be.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d2d46b22.css",
+    "static/js/main.5f0c64c7.js"
+  ]
+}
